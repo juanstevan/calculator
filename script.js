@@ -2,6 +2,7 @@ const numbers = document.querySelectorAll('.num');
 const clear = document.getElementById('clear');
 const display = document.getElementById('display');
 
+// defines display.textContent as content
 Object.defineProperty(window, 'content', {
     get: () => display.textContent,
     set: (n) => display.textContent = n

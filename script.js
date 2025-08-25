@@ -1,11 +1,11 @@
 const numbers = document.querySelectorAll('.num');
 const clear = document.getElementById('clear');
-const display = document.getElementById('display');
+const main = document.getElementById('main');
 
-// defines display.textContent as content
+// defines main.textContent as content
 Object.defineProperty(window, 'content', {
-    get: () => display.textContent,
-    set: (n) => display.textContent = n
+    get: () => main.textContent,
+    set: (n) => main.textContent = n
 });
 
 numbers.forEach((number) => 

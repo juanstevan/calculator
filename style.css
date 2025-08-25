@@ -17,6 +17,32 @@ body * {
     width: 100%;
 }
 
+#TOP {
+    height: 40%;
+
+    border: 1px solid grey;
+}
+
+#MAIN {
+    height: 60%;
+
+    font-size: 42px;
+    font-weight: 600;
+    text-align: right;
+    align-content: center;
+
+    border: 1px solid blue;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: rtl;
+}
+
+#main {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+}
+
 #buttons {
     height: 70%;
     width: 100%;

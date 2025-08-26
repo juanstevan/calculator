@@ -17,7 +17,7 @@ body * {
     width: 100%;
 }
 
-#TOP {
+#UPPER {
     height: 40%;
 
     border: 1px solid grey;
@@ -89,7 +89,16 @@ p {
     height: 25%;
 }
 
-#equal {
+#CLEAR {
     height: 20%;
     width: 100%;
+
+    display: flex;
+}
+
+#CLEAR > * {
+    flex-grow: 1;
+
+    text-align: center;
+    align-content: center;
 }

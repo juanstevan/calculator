@@ -1,6 +1,8 @@
 const numbers = document.querySelectorAll('.num');
-const clear = document.getElementById('clear');
+const operators = document.getElementById('operators').childNodes;
+
 const main = document.getElementById('main');
+const upper = document.getElementById('upper');
 
 // defines main.textContent as content
 Object.defineProperty(window, 'content', {
@@ -10,7 +12,8 @@ Object.defineProperty(window, 'content', {
 
 numbers.forEach((number) => 
     number.addEventListener('click', function() {
-        if (this.id == 'dot' && content.includes('.')) return;
+        if (this.id == 'dot' && content.includes('.') ||
+            this.id == 'n0' && content == '' && !content.includes('.')) return;
         if (this.id == 'dot' && content == '') return content += '0.';
         
         content += this.textContent;
@@ -21,7 +24,9 @@ numbers.forEach((number) =>
 
 document.addEventListener('keydown', (event) => {
     let key = event.key;
-    if (key == '.' && content.includes('.') || key !== '.' && isNaN(+key)) return;
+    if (key == '.' && content.includes('.') ||
+        key == '0' && content == '' && !content.includes('.') ||
+        key !== '.' && isNaN(+key)) return;
     if (content == '' && key == '.') return content += '0.';
 
     key == ' ' ?
@@ -31,8 +36,15 @@ document.addEventListener('keydown', (event) => {
     adjustText();
 });
 
+
+const clear = document.getElementById('clear');
 clear.addEventListener('click', (event) => {
     content = "";
+});
+
+const erase = document.getElementById('erase');
+erase.addEventListener('click', (event) => {
+    content = content.slice(0, -1);
 });
 
 function adjustText() {
@@ -52,3 +64,13 @@ function adjustText() {
     content = arr.reverse().join('') + dotSlice.join('');
     return;
 }
+
+operators.forEach((operator) => {
+    operator.addEventListener('click', (event) => {
+        let first = content;
+        content = '';
+
+        upper.textContent = first;
+    });
+});
+

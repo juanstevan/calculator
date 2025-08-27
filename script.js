@@ -42,9 +42,15 @@ clear.addEventListener('click', (event) => {
     content = "";
 });
 
+const allClear = document.getElementById('allClear');
+allClear.addEventListener('click', (event) => {
+    content = '', upper.textContent = '', calc = [];
+});
+
 const erase = document.getElementById('erase');
 erase.addEventListener('click', (event) => {
     content = content.slice(0, -1);
+    adjustText()
 });
 
 function adjustText() {
@@ -65,12 +71,48 @@ function adjustText() {
     return;
 }
 
+let calc = [];
+
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
-        let first = content;
+        let opt = event.target.textContent
+
+        if (content == '') {
+            calc.pop();
+            calc.push(opt)
+
+        } else {
+        calc.push(content, event.target.textContent);
         content = '';
 
-        upper.textContent = first;
+        }
+
+        upper.textContent = [...calc].join(' ');
+        
     });
+});
+
+const equal = document.getElementById('equal');
+equal.addEventListener('click', (event) => {
+    calc.push(content)
+    upper.textContent = [...calc].join(' ');
+
+    let operands = calc.filter((item, index) => index % 2 == 0);
+    let calcs = calc.filter((item, index) => index % 2 != 0);
+
+    for (_ in calcs) {
+        console.log([...calc]);
+        let multi = calc.indexOf('*'), divide = calc.indexOf('/');
+        let sum = calc.indexOf('+'), sub = calc.indexOf('-');
+
+        if (multi > 0) calc.splice(multi - 1, 3, calc[multi -1] * calc[multi +1]);
+        else if (divide > 0) calc.splice(divide - 1, 3, calc[divide -1] / calc[divide +1]);
+        else if (sub > 0) calc.splice(sub - 1, 3, calc[sub -1] - calc[sub +1]);
+        else if (sum > 0) calc.splice(sum - 1, 3, Number(calc[sum -1]) + Number(calc[sum +1]));
+
+    }
+
+    content = calc[0];
+
 });
 

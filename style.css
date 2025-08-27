@@ -32,13 +32,15 @@ body * {
     align-content: center;
 
     border: 1px solid blue;
+}
 
+#UPPER, #MAIN {
     overflow: hidden;
     text-overflow: ellipsis;
     direction: rtl;
 }
 
-#main {
+#upper, #main {
     direction: ltr;
     unicode-bidi: bidi-override;
 }
@@ -101,4 +103,12 @@ p {
 
     text-align: center;
     align-content: center;
+}
+
+#erase {
+    width: 50%;
+}
+
+#clear, #allClear {
+    width: 25%;
 }

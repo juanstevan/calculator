@@ -1,3 +1,7 @@
+:root {
+    --gap: 4px;
+}
+
 body * {
     box-sizing: border-box;
 
@@ -9,18 +13,25 @@ body * {
     width: 400px;
     box-sizing: content-box;
 
-    border: 1px solid red;
+    padding: var(--gap);
+
+    border: 4px solid grey;
+    border-radius: 10px;
+    background-image: linear-gradient(-30deg, #f0f0f0, white);
 }
 
 #display {
     height: 30%;
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--gap);
+
 }
 
 #UPPER {
     height: 40%;
-
-    border: 1px solid grey;
 }
 
 #MAIN {
@@ -30,14 +41,17 @@ body * {
     font-weight: 600;
     text-align: right;
     align-content: center;
-
-    border: 1px solid blue;
 }
 
 #UPPER, #MAIN {
     overflow: hidden;
     text-overflow: ellipsis;
     direction: rtl;
+
+    color: white;
+
+    border-radius: 4px;
+    background-color: darkgreen;
 }
 
 #upper, #main {
@@ -49,24 +63,30 @@ body * {
     height: 70%;
     width: 100%;
 
+    padding: var(--gap) 0;
+
     display: flex;
     flex-wrap: wrap;
+
+    gap: var(--gap);
 
     cursor: pointer;
 }
 
-#buttons * {
+#buttons > * > * {
     border: 1px solid black;
+    border-radius: 4px;
 }
 
 #numbers {
     height: 80%;
-    width: 75%;
+    flex-grow: 3;
 
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
+
+    gap: var(--gap);
 } 
 
 p {
@@ -84,21 +104,28 @@ p {
 
 #operators {
     height: 80%;
-    width: 25%;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--gap);
 }
 
 #operators * {
-    height: 25%;
+    flex-grow: 1;
+
 }
 
-#CLEAR {
+#delete {
     height: 20%;
     width: 100%;
 
     display: flex;
+    gap: var(--gap);
 }
 
-#CLEAR > * {
+#delete > * {
     flex-grow: 1;
 
     text-align: center;

@@ -96,12 +96,13 @@ const equal = document.getElementById('equal');
 equal.addEventListener('click', (event) => {
     calc.push(content)
     upper.textContent = [...calc].join(' ');
+    calc = calc.map((item, index) => index % 2 == 0? item : item.replace(',', ''));
+    console.log(calc);
 
     let operands = calc.filter((item, index) => index % 2 == 0);
     let calcs = calc.filter((item, index) => index % 2 != 0);
 
     for (_ in calcs) {
-        console.log([...calc]);
         let multi = calc.indexOf('*'), divide = calc.indexOf('/');
         let sum = calc.indexOf('+'), sub = calc.indexOf('-');
 
@@ -115,4 +116,3 @@ equal.addEventListener('click', (event) => {
     content = calc[0];
 
 });
-

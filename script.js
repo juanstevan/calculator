@@ -94,12 +94,11 @@ operators.forEach((operator) => {
 
 const equal = document.getElementById('equal');
 equal.addEventListener('click', (event) => {
-    calc.push(content)
-    upper.textContent = [...calc].join(' ');
-    calc = calc.map((item, index) => index % 2 == 0? item : item.replace(',', ''));
-    console.log(calc);
 
-    let operands = calc.filter((item, index) => index % 2 == 0);
+    calc.push(String(content));
+    upper.textContent = [...calc].join(' ');
+    calc = calc.map((item, i) => i % 2 == 0 ? item.replace(/,/g, '') : item);
+
     let calcs = calc.filter((item, index) => index % 2 != 0);
 
     for (_ in calcs) {
@@ -114,5 +113,8 @@ equal.addEventListener('click', (event) => {
     }
 
     content = calc[0];
+    adjustText();
+
+    calc = []
 
 });
